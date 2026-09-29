@@ -192,3 +192,9 @@ export const SERVICES: Service[] = [
 ];
 
 export const ROTATING_SPECIALTIES = SERVICES.map((s) => s.name);
+
+export function serviceBySlug(slug: string): Service {
+  const found = SERVICES.find((s) => s.slug === slug);
+  if (!found) throw new Error(`Unknown service: ${slug}`);
+  return found;
+}

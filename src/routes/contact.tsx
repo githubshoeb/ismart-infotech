@@ -37,6 +37,8 @@ const COUNTRIES = [
 
 const CHIPS = ["ALM / Automation", "Cloud", "Website / App Development", "Digital Marketing"];
 
+type FormErrors = { name?: string; email?: string; country?: string; message?: string };
+
 const field =
   "mt-2 w-full rounded-lg border border-input bg-card px-4 py-3 text-sm outline-none transition-colors focus:border-primary";
 
@@ -50,7 +52,7 @@ function Contact() {
     website: "", // honeypot
   });
   const [chips, setChips] = useState<string[]>([]);
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<FormErrors>({});
   const [sent, setSent] = useState(false);
 
   const set = (k: keyof typeof values, v: string) => setValues((p) => ({ ...p, [k]: v }));
@@ -60,7 +62,7 @@ function Contact() {
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const next: Record<string, string> = {};
+    const next: FormErrors = {};
     if (!values.name.trim()) next.name = "Please enter your name.";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) next.email = "Enter a valid email address.";
     if (!values.country) next.country = "Please choose your country or region.";

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ServicePageTemplate } from "@/components/ServicePageTemplate";
-import { SERVICES } from "@/lib/site";
+import { serviceBySlug } from "@/lib/site";
 
-const service = SERVICES[4];
+const service = serviceBySlug("data-ai");
 
 export const Route = createFileRoute("/services/data-ai")({
   head: () => ({

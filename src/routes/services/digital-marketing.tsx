@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ServicePageTemplate } from "@/components/ServicePageTemplate";
-import { SERVICES } from "@/lib/site";
+import { serviceBySlug } from "@/lib/site";
 
-const service = SERVICES[2];
+const service = serviceBySlug("digital-marketing");
 
 export const Route = createFileRoute("/services/digital-marketing")({
   head: () => ({
