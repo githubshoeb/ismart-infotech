@@ -11,6 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as ServicesCloudInfrastructureRouteImport } from './routes/services/cloud-infrastructure'
+import { Route as ServicesDigitalMarketingRouteImport } from './routes/services/digital-marketing'
+import { Route as ServicesItConsultingStaffingRouteImport } from './routes/services/it-consulting-staffing'
+import { Route as ServicesSoftwareDevelopmentRouteImport } from './routes/services/software-development'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +26,90 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesCloudInfrastructureRoute =
+  ServicesCloudInfrastructureRouteImport.update({
+    id: '/services/cloud-infrastructure',
+    path: '/services/cloud-infrastructure',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesDigitalMarketingRoute =
+  ServicesDigitalMarketingRouteImport.update({
+    id: '/services/digital-marketing',
+    path: '/services/digital-marketing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesItConsultingStaffingRoute =
+  ServicesItConsultingStaffingRouteImport.update({
+    id: '/services/it-consulting-staffing',
+    path: '/services/it-consulting-staffing',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ServicesSoftwareDevelopmentRoute =
+  ServicesSoftwareDevelopmentRouteImport.update({
+    id: '/services/software-development',
+    path: '/services/software-development',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/services/cloud-infrastructure': typeof ServicesCloudInfrastructureRoute
+  '/services/digital-marketing': typeof ServicesDigitalMarketingRoute
+  '/services/it-consulting-staffing': typeof ServicesItConsultingStaffingRoute
+  '/services/software-development': typeof ServicesSoftwareDevelopmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/services/cloud-infrastructure': typeof ServicesCloudInfrastructureRoute
+  '/services/digital-marketing': typeof ServicesDigitalMarketingRoute
+  '/services/it-consulting-staffing': typeof ServicesItConsultingStaffingRoute
+  '/services/software-development': typeof ServicesSoftwareDevelopmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/services/cloud-infrastructure': typeof ServicesCloudInfrastructureRoute
+  '/services/digital-marketing': typeof ServicesDigitalMarketingRoute
+  '/services/it-consulting-staffing': typeof ServicesItConsultingStaffingRoute
+  '/services/software-development': typeof ServicesSoftwareDevelopmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/services/cloud-infrastructure'
+    | '/services/digital-marketing'
+    | '/services/it-consulting-staffing'
+    | '/services/software-development'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/services/cloud-infrastructure'
+    | '/services/digital-marketing'
+    | '/services/it-consulting-staffing'
+    | '/services/software-development'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/services/cloud-infrastructure'
+    | '/services/digital-marketing'
+    | '/services/it-consulting-staffing'
+    | '/services/software-development'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ServicesCloudInfrastructureRoute: typeof ServicesCloudInfrastructureRoute
+  ServicesDigitalMarketingRoute: typeof ServicesDigitalMarketingRoute
+  ServicesItConsultingStaffingRoute: typeof ServicesItConsultingStaffingRoute
+  ServicesSoftwareDevelopmentRoute: typeof ServicesSoftwareDevelopmentRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +128,44 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/cloud-infrastructure': {
+      id: '/services/cloud-infrastructure'
+      path: '/services/cloud-infrastructure'
+      fullPath: '/services/cloud-infrastructure'
+      preLoaderRoute: typeof ServicesCloudInfrastructureRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/digital-marketing': {
+      id: '/services/digital-marketing'
+      path: '/services/digital-marketing'
+      fullPath: '/services/digital-marketing'
+      preLoaderRoute: typeof ServicesDigitalMarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/it-consulting-staffing': {
+      id: '/services/it-consulting-staffing'
+      path: '/services/it-consulting-staffing'
+      fullPath: '/services/it-consulting-staffing'
+      preLoaderRoute: typeof ServicesItConsultingStaffingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/software-development': {
+      id: '/services/software-development'
+      path: '/services/software-development'
+      fullPath: '/services/software-development'
+      preLoaderRoute: typeof ServicesSoftwareDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ServicesCloudInfrastructureRoute: ServicesCloudInfrastructureRoute,
+  ServicesDigitalMarketingRoute: ServicesDigitalMarketingRoute,
+  ServicesItConsultingStaffingRoute: ServicesItConsultingStaffingRoute,
+  ServicesSoftwareDevelopmentRoute: ServicesSoftwareDevelopmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
