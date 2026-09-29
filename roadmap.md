@@ -1,13 +1,13 @@
 # iSmart Infotech Solutions — build roadmap
 
-- [ ] Design tokens + fonts (Fraunces/Instrument Serif + Poppins), warm cream / charcoal-navy dark mode
-- [ ] Real logos wired: icon in header + favicon, full lockup in footer/hero
-- [ ] Shared Header (sticky, hide-on-scroll, services mega-menu, mobile overlay)
-- [ ] Shared Footer
-- [ ] Home page (hero, rotating text, trust, services overview, AI teaser, work flip cards, studio strip, booking, lanyard badge, final CTA)
-- [ ] About page
-- [ ] Six service pages from shared template
-- [ ] Contact page with validated form + honeypot
-- [ ] Privacy, Terms, 404
-- [ ] Global: custom cursor, scroll reveals, dark mode toggle, reduced motion
-- [ ] SEO: per-page head, JSON-LD, robots.txt, sitemap.xml
+- [x] Design tokens + fonts (Fraunces/Instrument Serif + Poppins), warm cream / charcoal-navy dark mode
+- [x] Real logos wired: icon in header + favicon, full lockup in footer/hero
+- [x] Shared Header (sticky, hide-on-scroll, services mega-menu, mobile overlay)
+- [x] Shared Footer
+- [x] Home page (hero, rotating text, trust, services overview, AI teaser, work flip cards, studio strip, booking, lanyard badge, final CTA)
+- [x] About page
+- [x] Six service pages from shared template
+- [x] Contact page with validated form + honeypot
+- [x] Privacy, Terms, 404
+- [x] Global: custom cursor, scroll reveals, dark mode toggle, reduced motion
+- [x] SEO: per-page head, JSON-LD, robots.txt, sitemap.xml
