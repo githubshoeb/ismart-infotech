@@ -1,0 +1,24 @@
+import { createFileRoute } from "@tanstack/react-router";
+
+import { ServicePageTemplate } from "@/components/ServicePageTemplate";
+import { SERVICES } from "@/lib/site";
+
+const service = SERVICES[1];
+
+export const Route = createFileRoute("/services/software-development")({
+  head: () => ({
+    meta: [
+      { title: "Software Development — iSmart Infotech Solutions" },
+      {
+        name: "description",
+        content:
+          "Custom software, websites, e-commerce, mobile apps, SaaS products, APIs and legacy modernization built around how your business works.",
+      },
+      { property: "og:title", content: "Software Development — iSmart Infotech Solutions" },
+      { property: "og:description", content: service.intro },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: () => <ServicePageTemplate service={service} />,
+});
