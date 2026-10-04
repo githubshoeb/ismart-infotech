@@ -2,10 +2,37 @@ import { Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
+import aeFlag from "circle-flags/flags/ae.svg?url";
+import deFlag from "circle-flags/flags/de.svg?url";
+import inFlag from "circle-flags/flags/in.svg?url";
+import qaFlag from "circle-flags/flags/qa.svg?url";
+import saFlag from "circle-flags/flags/sa.svg?url";
+import usFlag from "circle-flags/flags/us.svg?url";
+
 import { CircuitBackdrop } from "@/components/CircuitBackdrop";
 import { LightfallBackground } from "@/components/LightfallBackground";
 import { ScrambleText } from "@/components/ScrambleText";
 import { SITE } from "@/lib/site";
+
+const COUNTRIES: { code: string; name: string }[] = [
+  { code: "ae", name: "United Arab Emirates" },
+  { code: "sa", name: "Saudi Arabia" },
+  { code: "qa", name: "Qatar" },
+  { code: "in", name: "India" },
+  { code: "us", name: "United States" },
+  { code: "de", name: "Germany" },
+];
+
+const FLAG_URLS: Record<string, string> = {
+  ae: aeFlag,
+  sa: saFlag,
+  qa: qaFlag,
+  in: inFlag,
+  us: usFlag,
+  de: deFlag,
+};
+
+const flagUrl = (code: string) => FLAG_URLS[code];
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 16 },
@@ -73,11 +100,14 @@ export function Hero() {
 
         <motion.div {...fade(0.46)} className="mt-12 flex items-center gap-4">
           <div className="flex -space-x-3">
-            {[0, 1, 2, 3, 4].map((i) => (
-              /* PLACEHOLDER avatars — swap for real client or team images */
-              <span
-                key={i}
-                className="h-9 w-9 rounded-full border-2 border-background bg-gradient-to-br from-primary/70 to-highlight/60"
+            {COUNTRIES.map(({ code, name }) => (
+              <img
+                key={code}
+                src={flagUrl(code)}
+                alt={name}
+                title={name}
+                loading="lazy"
+                className="h-9 w-9 rounded-full border-2 border-border bg-background object-cover"
               />
             ))}
           </div>
