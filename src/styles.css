@@ -49,37 +49,39 @@
 :root {
   --radius: 0.5rem;
 
-  /* warm cream */
-  --background: oklch(0.955 0.013 88);
-  --surface: oklch(0.925 0.018 85);
-  --foreground: oklch(0.252 0.089 269);
-  --card: oklch(0.975 0.009 88);
-  --card-foreground: oklch(0.252 0.089 269);
-  --popover: oklch(0.975 0.009 88);
-  --popover-foreground: oklch(0.252 0.089 269);
+  /* Cool Slate Mist */
+  --background: #eef1f6;
+  --surface: #e4e9f1;
+  --foreground: #0b1a47;
+  --card: #ffffff;
+  --card-foreground: #0b1a47;
+  --popover: #ffffff;
+  --popover-foreground: #0b1a47;
+  --card-shadow: 0 4px 20px rgba(11, 26, 71, 0.06);
 
   /* Primary Blue #0B7BD2 */
   --primary: oklch(0.575 0.155 246);
   --primary-foreground: oklch(0.985 0.005 90);
 
-  --secondary: oklch(0.925 0.018 85);
-  --secondary-foreground: oklch(0.252 0.089 269);
-  --muted: oklch(0.915 0.016 85);
-  --muted-foreground: oklch(0.505 0.035 265);
-  --accent: oklch(0.905 0.024 240);
-  --accent-foreground: oklch(0.252 0.089 269);
+  --secondary: #e4e9f1;
+  --secondary-foreground: #0b1a47;
+  --muted: #e4e9f1;
+  --muted-foreground: #51607a;
+  --accent: #e2ecf8;
+  --accent-foreground: #0b1a47;
 
   /* Bright Cyan #02AEEA — rare highlight */
   --highlight: oklch(0.715 0.145 230);
 
   --destructive: oklch(0.55 0.2 27);
   --destructive-foreground: oklch(0.985 0.005 90);
-  --border: oklch(0.87 0.018 85);
-  --input: oklch(0.87 0.018 85);
+  --border: #d7dee8;
+  --input: #d7dee8;
   --ring: oklch(0.575 0.155 246);
 }
 
 .dark {
+  --card-shadow: none;
   --background: oklch(0.175 0.014 265);
   --surface: oklch(0.212 0.017 266);
   --foreground: oklch(0.945 0.008 90);
@@ -196,6 +198,7 @@
   background: color-mix(in oklab, var(--color-card) 92%, var(--color-surface));
   border: 1px solid var(--color-border);
   border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow, none);
   transition:
     transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
     border-color 300ms ease,
