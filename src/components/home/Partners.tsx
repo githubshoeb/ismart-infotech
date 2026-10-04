@@ -16,7 +16,7 @@ export function Partners() {
     if (!el) return;
     const io = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
+        if (e?.isIntersecting) {
           setNear(true);
           io.disconnect();
         }

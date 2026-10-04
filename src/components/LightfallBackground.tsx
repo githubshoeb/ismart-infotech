@@ -57,7 +57,7 @@ export function LightfallBackground() {
     let last = performance.now();
     let visible = true;
     const io = new IntersectionObserver(([e]) => {
-      visible = e.isIntersecting;
+      visible = !!e?.isIntersecting;
       if (visible && !reduce) {
         last = performance.now();
         raf = requestAnimationFrame(frame);
@@ -100,7 +100,7 @@ export function LightfallBackground() {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       for (let i = 0; i < beams.length; i++) {
-        const b = beams[i];
+        const b = beams[i]!;
         b.y += b.speed * dt;
         b.x += b.drift * dt;
         if (b.y - b.len > h) beams[i] = spawn();

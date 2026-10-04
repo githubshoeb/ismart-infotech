@@ -10,8 +10,8 @@ const CYCLE = 420;
 export function ScrambleText({ text, className }: { text: string; className?: string }) {
   const [display, setDisplay] = useState(text);
   const raf = useRef(0);
-  const startT = useRef<number>();
-  const stopT = useRef<number>();
+  const startT = useRef<number | undefined>(undefined);
+  const stopT = useRef<number | undefined>(undefined);
   const running = useRef(false);
 
   const stop = () => {

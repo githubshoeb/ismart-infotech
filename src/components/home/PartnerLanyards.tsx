@@ -57,7 +57,7 @@ function cardTexture(name: string, initials: string, p: Palette) {
   // name
   const [first, ...rest] = name.split(" ");
   ctx.font = "600 42px Poppins, sans-serif";
-  ctx.fillText(first, 256, 480);
+  ctx.fillText(first ?? "", 256, 480);
   ctx.font = "400 26px Poppins, sans-serif";
   ctx.fillStyle = "rgba(255,255,255,0.75)";
   ctx.fillText(rest.join(" "), 256, 530);
@@ -128,10 +128,10 @@ function Band({
         const d = Math.max(0.1, Math.min(1, r.current.lerped.distanceTo(r.current.translation())));
         r.current.lerped.lerp(r.current.translation(), delta * (minSpeed + d * (maxSpeed - minSpeed)));
       });
-      curve.points[0].copy(j3.current.translation() as THREE.Vector3);
-      curve.points[1].copy(j2.current.lerped);
-      curve.points[2].copy(j1.current.lerped);
-      curve.points[3].copy(fixed.current.translation() as THREE.Vector3);
+      curve.points[0]!.copy(j3.current.translation() as THREE.Vector3);
+      curve.points[1]!.copy(j2.current.lerped);
+      curve.points[2]!.copy(j1.current.lerped);
+      curve.points[3]!.copy(fixed.current.translation() as THREE.Vector3);
       band.current.geometry.setPoints(curve.getPoints(32));
       ang.copy(card.current.angvel() as THREE.Vector3);
       rot.copy(card.current.rotation() as unknown as THREE.Vector3);
@@ -201,7 +201,7 @@ function Scene({ palette }: { palette: Palette }) {
   return (
     <>
       {PARTNERS.map((p, i) => (
-        <Band key={p.name} x={(i - 1) * spacing} texture={textures[i]} strap={i === 1 ? palette.cyan : palette.primary} />
+        <Band key={p.name} x={(i - 1) * spacing} texture={textures[i]!} strap={i === 1 ? palette.cyan : palette.primary} />
       ))}
     </>
   );
