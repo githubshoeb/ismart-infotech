@@ -3,6 +3,8 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
 import { CircuitBackdrop } from "@/components/CircuitBackdrop";
+import { LightfallBackground } from "@/components/LightfallBackground";
+import { ScrambleText } from "@/components/ScrambleText";
 import { SITE } from "@/lib/site";
 
 const fade = (delay: number) => ({
@@ -13,11 +15,19 @@ const fade = (delay: number) => ({
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[92vh] items-center overflow-hidden pt-28 pb-20">
+    <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-background pt-28 pb-20">
+      <LightfallBackground />
       <CircuitBackdrop />
 
       <div className="shell relative">
-        <motion.p {...fade(0)} className="text-eyebrow text-primary">
+        <motion.div {...fade(0)} className="mb-5">
+          <ScrambleText
+            text="iSmart Infotech Solutions"
+            className="font-display text-2xl text-foreground sm:text-3xl"
+          />
+        </motion.div>
+
+        <motion.p {...fade(0.04)} className="text-eyebrow text-primary">
           Smart Technology Partner
         </motion.p>
 
@@ -72,7 +82,7 @@ export function Hero() {
             ))}
           </div>
           <p className="text-sm text-muted-foreground">
-            Trusted by teams across {SITE.countries} countries
+            Operate across {SITE.countries} nations
           </p>
         </motion.div>
       </div>

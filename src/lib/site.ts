@@ -197,3 +197,10 @@ export function serviceBySlug(slug: string): Service {
   if (!found) throw new Error(`Unknown service: ${slug}`);
   return found;
 }
+
+/** Partners shown as swinging lanyard badges. Initials are placeholder marks — no real logos. */
+export const PARTNERS = [
+  { name: "PlexioCloud Private Limited", initials: "PC" },
+  { name: "Ultimatriks Private Limited", initials: "UM" },
+  { name: "Global Gamma Private Limited", initials: "GG" },
+];
