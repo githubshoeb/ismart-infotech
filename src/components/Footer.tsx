@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram, Linkedin } from "lucide-react";
+import { Linkedin, Mail } from "lucide-react";
 
 import fullLogo from "@/assets/ismart-logo-full.png.asset.json";
 import { SERVICES, SITE } from "@/lib/site";
@@ -32,13 +32,11 @@ export function Footer() {
               <Linkedin className="h-4 w-4" />
             </a>
             <a
-              href={SITE.instagram}
-              target="_blank"
-              rel="noreferrer noopener"
-              aria-label="Instagram"
+              href={`mailto:${SITE.email}`}
+              aria-label="Email"
               className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground/70 transition-colors hover:border-primary hover:text-primary"
             >
-              <Instagram className="h-4 w-4" />
+              <Mail className="h-4 w-4" />
             </a>
           </div>
         </div>

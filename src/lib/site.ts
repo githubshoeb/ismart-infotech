@@ -11,8 +11,7 @@ export const SITE = {
   replyDays: "2 business days",
   countries: "8+",
   /* PLACEHOLDER — replace with real profile URLs */
-  linkedin: "https://www.linkedin.com/",
-  instagram: "https://www.instagram.com/",
+  linkedin: "https://www.linkedin.com/in/ismart-infotech-solutions",
 } as const;
 
 export type Service = {
