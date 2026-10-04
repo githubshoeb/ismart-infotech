@@ -2,10 +2,37 @@ import { Link } from "@tanstack/react-router";
 import { ArrowDown, ArrowRight } from "lucide-react";
 import { motion } from "motion/react";
 
+import aeFlag from "circle-flags/flags/ae.svg?url";
+import deFlag from "circle-flags/flags/de.svg?url";
+import inFlag from "circle-flags/flags/in.svg?url";
+import qaFlag from "circle-flags/flags/qa.svg?url";
+import saFlag from "circle-flags/flags/sa.svg?url";
+import usFlag from "circle-flags/flags/us.svg?url";
+
 import { CircuitBackdrop } from "@/components/CircuitBackdrop";
 import { LightfallBackground } from "@/components/LightfallBackground";
 import { ScrambleText } from "@/components/ScrambleText";
 import { SITE } from "@/lib/site";
+
+const COUNTRIES: { code: string; name: string }[] = [
+  { code: "ae", name: "United Arab Emirates" },
+  { code: "sa", name: "Saudi Arabia" },
+  { code: "qa", name: "Qatar" },
+  { code: "in", name: "India" },
+  { code: "us", name: "United States" },
+  { code: "de", name: "Germany" },
+];
+
+const FLAG_URLS: Record<string, string> = {
+  ae: aeFlag,
+  sa: saFlag,
+  qa: qaFlag,
+  in: inFlag,
+  us: usFlag,
+  de: deFlag,
+};
+
+const flagUrl = (code: string) => FLAG_URLS[code];
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 16 },
