@@ -54,7 +54,7 @@ export function Hero() {
             Get Free Consultation <ArrowRight className="h-4 w-4" />
           </Link>
           <a
-            href="#selected-work"
+            href="#partners"
             className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm font-medium transition-colors hover:border-primary hover:text-primary"
           >
             See our work
