@@ -73,11 +73,14 @@ export function Hero() {
 
         <motion.div {...fade(0.46)} className="mt-12 flex items-center gap-4">
           <div className="flex -space-x-3">
-            {[0, 1, 2, 3, 4].map((i) => (
-              /* PLACEHOLDER avatars — swap for real client or team images */
-              <span
-                key={i}
-                className="h-9 w-9 rounded-full border-2 border-background bg-gradient-to-br from-primary/70 to-highlight/60"
+            {COUNTRIES.map(({ code, name }) => (
+              <img
+                key={code}
+                src={flagUrl(code)}
+                alt={name}
+                title={name}
+                loading="lazy"
+                className="h-9 w-9 rounded-full border-2 border-border bg-background object-cover"
               />
             ))}
           </div>
