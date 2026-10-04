@@ -201,7 +201,7 @@ function Scene({ palette }: { palette: Palette }) {
   return (
     <>
       {PARTNERS.map((p, i) => (
-        <Band key={p.name} x={(i - 1) * spacing - 1.5} texture={textures[i]} strap={i === 1 ? palette.cyan : palette.primary} />
+        <Band key={p.name} x={(i - 1) * spacing} texture={textures[i]} strap={i === 1 ? palette.cyan : palette.primary} />
       ))}
     </>
   );
