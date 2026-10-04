@@ -11,8 +11,7 @@ export const SITE = {
   replyDays: "2 business days",
   countries: "8+",
   /* PLACEHOLDER — replace with real profile URLs */
-  linkedin: "https://www.linkedin.com/",
-  instagram: "https://www.instagram.com/",
+  linkedin: "https://www.linkedin.com/in/ismart-infotech-solutions",
 } as const;
 
 export type Service = {
@@ -198,3 +197,10 @@ export function serviceBySlug(slug: string): Service {
   if (!found) throw new Error(`Unknown service: ${slug}`);
   return found;
 }
+
+/** Partners shown as swinging lanyard badges. Initials are placeholder marks — no real logos. */
+export const PARTNERS = [
+  { name: "PlexioCloud Private Limited", initials: "PC" },
+  { name: "Ultimatriks Private Limited", initials: "UM" },
+  { name: "Global Gamma Private Limited", initials: "GG" },
+];

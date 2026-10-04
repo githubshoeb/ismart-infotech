@@ -276,3 +276,86 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+/* Brand navy used by canvas/3D effects (read at runtime, never hardcoded in components). */
+:root,
+.dark {
+  --brand-navy: oklch(0.252 0.089 269);
+}
+
+/* Subtle animated scanner texture behind every non-hero section. */
+.scanner-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  background-image:
+    linear-gradient(color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in oklab, var(--primary) 7%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 85%);
+}
+.scanner-bg::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -35vh;
+  height: 35vh;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--brand-navy) 6%, transparent) 55%,
+    color-mix(in oklab, var(--highlight) 9%, transparent) 96%,
+    color-mix(in oklab, var(--primary) 22%, transparent) 99.5%,
+    transparent
+  );
+  animation: ismart-scan 9s linear infinite;
+}
+@keyframes ismart-scan {
+  to {
+    transform: translateY(140vh);
+  }
+}
+
+/* Hero AI chip: current pulsing out of / back into the chip. */
+.chip-pulse {
+  stroke-dasharray: 60 440;
+  animation: ismart-chip-pulse 3.6s ease-in-out infinite alternate;
+}
+@keyframes ismart-chip-pulse {
+  0% {
+    stroke-dashoffset: 60;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: -440;
+    opacity: 0;
+  }
+}
+.chip-breathe {
+  animation: ismart-chip-breathe 3.6s ease-in-out infinite;
+}
+@keyframes ismart-chip-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scanner-bg::after,
+  .chip-pulse,
+  .chip-breathe {
+    animation: none;
+  }
+}

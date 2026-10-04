@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Hero } from "@/components/home/Hero";
 import { RotatingSpecialties } from "@/components/home/RotatingSpecialties";
-import { SelectedWork } from "@/components/home/SelectedWork";
+import { Partners } from "@/components/home/Partners";
 import { LanyardBadge } from "@/components/LanyardBadge";
 import { Reveal } from "@/components/Reveal";
 import { SERVICES, SITE } from "@/lib/site";
@@ -21,7 +21,7 @@ const ORG_JSONLD = {
     postalCode: "431401",
     addressCountry: "IN",
   },
-  sameAs: [SITE.linkedin, SITE.instagram],
+  sameAs: [SITE.linkedin],
 };
 
 export const Route = createFileRoute("/")({
@@ -155,7 +155,7 @@ function Index() {
         </div>
       </section>
 
-      <SelectedWork />
+      <Partners />
 
       {/* Studio strip */}
       <section className="section-pad bg-surface/50">
@@ -163,7 +163,7 @@ function Index() {
           <Reveal>
             <div>
               <p className="text-eyebrow text-muted-foreground">
-                Working since {SITE.workingSince}
+                Operating with modern, high-tier technical capabilities
               </p>
               <h2 className="text-section mt-4">
                 Senior hands on <span className="em-italic">every project.</span>
