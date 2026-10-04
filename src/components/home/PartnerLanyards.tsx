@@ -35,11 +35,11 @@ const BADGE_BLUE = "#0b7bd2";
 const R = 0.72; // medallion radius
 const MED_Y = 0.5;
 const PLATE_W = 1.3;
-const PLATE_H = 0.82;
-const PLATE_Y = -0.42;
+const PLATE_H = 0.86;
+const PLATE_Y = -0.56;
 
 function Badge({ initials, name }: { initials: string; name: string }) {
-  const [first, ...rest] = name.split(" ");
+  const label = name.replace(/\s+Private Limited$/i, "");
   return (
     <group>
       {/* Plate border (behind) */}
@@ -72,8 +72,8 @@ function Badge({ initials, name }: { initials: string; name: string }) {
       </Text>
       {/* Name on nameplate */}
       <Text
-        position={[0, PLATE_Y - 0.02, 0.024]}
-        fontSize={0.17}
+        position={[0, PLATE_Y - 0.1, 0.024]}
+        fontSize={0.15}
         maxWidth={PLATE_W - 0.12}
         textAlign="center"
         color={BADGE_NAVY}
@@ -82,7 +82,7 @@ function Badge({ initials, name }: { initials: string; name: string }) {
         lineHeight={1.15}
         renderOrder={6}
       >
-        {`${first}\n${rest.join(" ")}`}
+        {`${label}\nPrivate Limited`}
       </Text>
       {/* Clip */}
       <mesh position={[0, MED_Y + R + 0.08, 0]}>
@@ -171,7 +171,7 @@ function Band({ x, initials, name, strap }: { x: number; initials: string; name:
           <BallCollider args={[0.1]} restitution={0} />
         </RigidBody>
         <RigidBody position={[2, 0, 0]} ref={card} {...seg} type={dragged ? "kinematicPosition" : "dynamic"}>
-          <CuboidCollider args={[R, 1.0, 0.03]} restitution={0} />
+          <CuboidCollider args={[R, 1.15, 0.03]} restitution={0} />
           <group
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
