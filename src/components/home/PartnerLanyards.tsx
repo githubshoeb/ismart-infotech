@@ -31,61 +31,120 @@ const BADGE_LIGHT = "#ffffff";
 const BADGE_CYAN = "#02aeea";
 const BADGE_BLUE = "#0b7bd2";
 
-// Geometry
-const R = 0.72; // medallion radius
-const MED_Y = 0.5;
-const PLATE_W = 1.3;
-const PLATE_H = 0.86;
-const PLATE_Y = -0.56;
+// Geometry — vertical ID card
+const CW = 1.6;
+const CH = 2.3;
+const HW = CW / 2;
+const HH = CH / 2;
+const CLIP_Y = HH + 0.08;
 
-function Badge({ initials, name }: { initials: string; name: string }) {
+function poly(pts: [number, number][]) {
+  const s = new THREE.Shape();
+  s.moveTo(pts[0]![0], pts[0]![1]);
+  pts.slice(1).forEach(([x, y]) => s.lineTo(x, y));
+  s.closePath();
+  return new THREE.ShapeGeometry(s);
+}
+
+function roundedRect(w: number, h: number, r: number) {
+  const s = new THREE.Shape();
+  const x = -w / 2;
+  const y = -h / 2;
+  s.moveTo(x + r, y);
+  s.lineTo(x + w - r, y);
+  s.quadraticCurveTo(x + w, y, x + w, y + r);
+  s.lineTo(x + w, y + h - r);
+  s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+  s.lineTo(x + r, y + h);
+  s.quadraticCurveTo(x, y + h, x, y + h - r);
+  s.lineTo(x, y + r);
+  s.quadraticCurveTo(x, y, x + r, y);
+  return s;
+}
+
+const R_CORNER = 0.12;
+const ins = 0.035; // keep diagonals inside rounded corners
+
+function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
   const label = name.replace(/\s+Private Limited$/i, "");
+  const geo = useMemo(() => {
+    const body = new THREE.ExtrudeGeometry(roundedRect(CW, CH, R_CORNER), {
+      depth: 0.04,
+      bevelEnabled: false,
+      curveSegments: 12,
+    });
+    body.translate(0, 0, -0.04);
+    return {
+      body,
+      // Angular header blocks
+      navy: poly([[-HW, HH - R_CORNER], [-HW + R_CORNER, HH], [HW - R_CORNER, HH], [HW, HH - R_CORNER], [HW, 0.62], [-HW, 0.28]]),
+      blue: poly([[-HW, 0.5], [HW * 0.15, 0.36], [-HW, 0.06]]),
+      cyan: poly([[HW, 0.82], [HW, 0.4], [HW * 0.05, 0.52]]),
+      bar: poly([[-HW, -HH + 0.24], [HW, -HH + 0.24], [HW, -HH + R_CORNER], [HW - R_CORNER + ins, -HH + ins], [-HW + R_CORNER - ins, -HH + ins], [-HW, -HH + R_CORNER]]),
+    };
+  }, []);
   return (
     <group>
-      {/* Plate border (behind) */}
-      <mesh position={[0, PLATE_Y, -0.012]} renderOrder={1}>
-        <boxGeometry args={[PLATE_W + 0.06, PLATE_H + 0.06, 0.03]} />
-        <meshStandardMaterial color={BADGE_BLUE} roughness={0.5} />
+      <mesh geometry={geo.body}>
+        <meshPhysicalMaterial color={BADGE_LIGHT} roughness={0.55} clearcoat={0.6} clearcoatRoughness={0.3} />
       </mesh>
-      {/* Light nameplate */}
-      <mesh position={[0, PLATE_Y, 0]} renderOrder={2}>
-        <boxGeometry args={[PLATE_W, PLATE_H, 0.04]} />
-        <meshStandardMaterial color={BADGE_LIGHT} roughness={0.6} />
+      <mesh geometry={geo.blue} position-z={0.002}>
+        <meshBasicMaterial color={BADGE_BLUE} />
       </mesh>
-      {/* Medallion border ring */}
-      <mesh position={[0, MED_Y, 0.004]} rotation-x={Math.PI / 2} renderOrder={3}>
-        <cylinderGeometry args={[R + 0.04, R + 0.04, 0.05, 64]} />
-        <meshStandardMaterial color={BADGE_BLUE} roughness={0.4} />
+      <mesh geometry={geo.navy} position-z={0.004}>
+        <meshBasicMaterial color={BADGE_NAVY} />
       </mesh>
-      {/* Dark medallion */}
-      <mesh position={[0, MED_Y, 0.01]} rotation-x={Math.PI / 2} renderOrder={4}>
-        <cylinderGeometry args={[R, R, 0.06, 64]} />
-        <meshPhysicalMaterial color={BADGE_NAVY} clearcoat={1} clearcoatRoughness={0.25} roughness={0.45} />
-      </mesh>
-      {/* Inner cyan ring + initials */}
-      <mesh position={[0, MED_Y, 0.042]} renderOrder={5}>
-        <ringGeometry args={[R * 0.72, R * 0.76, 64]} />
+      <mesh geometry={geo.cyan} position-z={0.006}>
         <meshBasicMaterial color={BADGE_CYAN} />
       </mesh>
-      <Text position={[0, MED_Y, 0.046]} fontSize={0.34} color={BADGE_LIGHT} anchorX="center" anchorY="middle" renderOrder={6}>
-        {initials}
+
+      {/* Header: logo + company + tagline */}
+      <mesh position={[-HW + 0.3, HH - 0.3, 0.01]}>
+        <planeGeometry args={[0.3, 0.3]} />
+        <meshBasicMaterial map={logo} transparent toneMapped={false} />
+      </mesh>
+      <Text position={[-HW + 0.5, HH - 0.25, 0.012]} fontSize={0.092} color={BADGE_LIGHT} anchorX="left" anchorY="middle" maxWidth={1}>
+        iSmart Infotech Solutions
       </Text>
-      {/* Name on nameplate */}
+      <Text position={[-HW + 0.5, HH - 0.37, 0.012]} fontSize={0.06} letterSpacing={0.08} color={BADGE_CYAN} anchorX="left" anchorY="middle">
+        CODE · CREATE · CONNECT
+      </Text>
+
+      {/* Partner name (hero element) */}
       <Text
-        position={[0, PLATE_Y - 0.1, 0.024]}
-        fontSize={0.15}
-        maxWidth={PLATE_W - 0.12}
+        position={[0, -0.18, 0.012]}
+        fontSize={0.24}
+        maxWidth={CW - 0.2}
         textAlign="center"
         color={BADGE_NAVY}
         anchorX="center"
         anchorY="middle"
-        lineHeight={1.15}
-        renderOrder={6}
+        outlineWidth={0.004}
+        outlineColor={BADGE_NAVY}
       >
-        {`${label}\nPrivate Limited`}
+        {label}
       </Text>
+      <Text position={[0, -0.42, 0.012]} fontSize={0.105} color={BADGE_NAVY} anchorX="center" anchorY="middle">
+        Private Limited
+      </Text>
+      <mesh position={[0, -0.56, 0.01]}>
+        <planeGeometry args={[0.5, 0.012]} />
+        <meshBasicMaterial color={BADGE_CYAN} />
+      </mesh>
+      <Text position={[0, -0.7, 0.012]} fontSize={0.075} letterSpacing={0.12} color={BADGE_BLUE} anchorX="center" anchorY="middle">
+        COLLABORATION PARTNER
+      </Text>
+
+      {/* Bottom bar */}
+      <mesh geometry={geo.bar} position-z={0.006}>
+        <meshBasicMaterial color={BADGE_BLUE} />
+      </mesh>
+      <Text position={[0, -HH + 0.13, 0.012]} fontSize={0.06} letterSpacing={0.1} color={BADGE_LIGHT} anchorX="center" anchorY="middle">
+        CODE · CREATE · CONNECT
+      </Text>
+
       {/* Clip */}
-      <mesh position={[0, MED_Y + R + 0.08, 0]}>
+      <mesh position={[0, CLIP_Y, 0]}>
         <boxGeometry args={[0.26, 0.18, 0.07]} />
         <meshStandardMaterial color="#9aa3b5" metalness={0.9} roughness={0.3} />
       </mesh>
