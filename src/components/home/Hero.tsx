@@ -44,11 +44,11 @@ const fade = (delay: number) => ({
 export function Hero() {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-background pt-28 pb-20">
+      <HeroSlideshow />
       <LightfallBackground />
       <CircuitBackdrop />
 
-      <div className="shell relative grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
-      <div>
+      <div className="shell relative">
         <motion.div {...fade(0)} className="mb-5">
           <ScrambleText
             text="iSmart Infotech Solutions"
@@ -116,11 +116,6 @@ export function Hero() {
           <p className="text-sm text-muted-foreground">
             Operate across {SITE.countries} nations
           </p>
-        </motion.div>
-      </div>
-
-        <motion.div {...fade(0.3)}>
-          <HeroSlideshow />
         </motion.div>
       </div>
 
