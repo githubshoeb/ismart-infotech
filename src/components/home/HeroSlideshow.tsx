@@ -38,18 +38,7 @@ export function HeroSlideshow({ theme }: { theme: ReactNode }) {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
       <AnimatePresence initial={false}>
-        {step === 0 ? (
-          <motion.div
-            key="theme"
-            className="absolute inset-0 bg-background"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={fade}
-          >
-            {theme}
-          </motion.div>
-        ) : (
+        {step > 0 && (
           <motion.img
             key={SLIDES[step - 1]}
             src={SLIDES[step - 1]}
@@ -68,6 +57,21 @@ export function HeroSlideshow({ theme }: { theme: ReactNode }) {
       {/* Readability overlay — active over both theme and photo steps */}
       <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/55" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-background" />
+      {/* Theme layer drawn as before (above the tint); unmounted during photo steps */}
+      <AnimatePresence initial={false}>
+        {step === 0 && (
+          <motion.div
+            key="theme"
+            className="absolute inset-0 bg-background"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={fade}
+          >
+            {theme}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
