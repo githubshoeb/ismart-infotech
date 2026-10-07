@@ -194,7 +194,7 @@ function About() {
         <div className="shell pt-20">
           <Reveal>
             <h2 className="text-section">
-              Industries <span className="em-italic">served</span>
+              Industries <span className="em-italic">we serve</span>
             </h2>
           </Reveal>
           <div className="mt-10 flex flex-wrap gap-3">
