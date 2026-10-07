@@ -104,7 +104,7 @@ function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
         <planeGeometry args={[0.3, 0.3]} />
         <meshBasicMaterial map={logo} transparent toneMapped={false} />
       </mesh>
-      <Text position={[-HW + 0.5, HH - 0.25, 0.012]} fontSize={0.092} color={BADGE_LIGHT} anchorX="left" anchorY="middle" maxWidth={1}>
+      <Text position={[-HW + 0.5, HH - 0.25, 0.012]} fontSize={0.072} color={BADGE_LIGHT} anchorX="left" anchorY="middle">
         iSmart Infotech Solutions
       </Text>
       <Text position={[-HW + 0.5, HH - 0.37, 0.012]} fontSize={0.06} letterSpacing={0.08} color={BADGE_CYAN} anchorX="left" anchorY="middle">
@@ -114,8 +114,8 @@ function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
       {/* Partner name (hero element) */}
       <Text
         position={[0, -0.18, 0.012]}
-        fontSize={0.24}
-        maxWidth={CW - 0.2}
+        fontSize={0.19}
+        maxWidth={CW * 2}
         textAlign="center"
         color={BADGE_NAVY}
         anchorX="center"
