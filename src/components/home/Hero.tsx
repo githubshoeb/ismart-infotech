@@ -44,9 +44,14 @@ const fade = (delay: number) => ({
 export function Hero() {
   return (
     <section className="relative flex min-h-[92vh] items-center overflow-hidden bg-background pt-28 pb-20">
-      <HeroSlideshow />
-      <LightfallBackground />
-      <CircuitBackdrop />
+      <HeroSlideshow
+        theme={
+          <>
+            <LightfallBackground />
+            <CircuitBackdrop />
+          </>
+        }
+      />
 
       <div className="shell relative">
         <motion.div {...fade(0)} className="mb-5">
