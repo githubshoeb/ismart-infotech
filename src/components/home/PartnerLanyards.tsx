@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
-import { Text } from "@react-three/drei";
+import { Text, useTexture } from "@react-three/drei";
 import {
   BallCollider,
   CuboidCollider,
@@ -11,11 +11,12 @@ import {
   type RapierRigidBody,
 } from "@react-three/rapier";
 import { MeshLineGeometry, MeshLineMaterial } from "meshline";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
 import { cssColor } from "@/lib/css-color";
 import { PARTNERS } from "@/lib/site";
+import logoAsset from "@/assets/ismart-logo-icon.png.asset.json";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 declare module "@react-three/fiber" {
@@ -152,7 +153,7 @@ function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
   );
 }
 
-function Band({ x, initials, name, strap }: { x: number; initials: string; name: string; strap: string }) {
+function Band({ x, name, strap, logo }: { x: number; name: string; strap: string; logo: THREE.Texture }) {
   const band = useRef<any>(null);
   const fixed = useRef<RapierRigidBody>(null!);
   const j1 = useRef<any>(null!);
@@ -179,7 +180,7 @@ function Band({ x, initials, name, strap }: { x: number; initials: string; name:
   useRopeJoint(fixed, j1, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j1, j2, [[0, 0, 0], [0, 0, 0], 1]);
   useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 1]);
-  useSphericalJoint(j3, card, [[0, 0, 0], [0, MED_Y + R + 0.15, 0]]);
+  useSphericalJoint(j3, card, [[0, 0, 0], [0, CLIP_Y + 0.07, 0]]);
 
   useEffect(() => {
     if (!hovered) return;
@@ -230,7 +231,7 @@ function Band({ x, initials, name, strap }: { x: number; initials: string; name:
           <BallCollider args={[0.1]} restitution={0} />
         </RigidBody>
         <RigidBody position={[2, 0, 0]} ref={card} {...seg} type={dragged ? "kinematicPosition" : "dynamic"}>
-          <CuboidCollider args={[R, 1.15, 0.03]} restitution={0} />
+          <CuboidCollider args={[HW, HH, 0.03]} restitution={0} />
           <group
             onPointerOver={() => hover(true)}
             onPointerOut={() => hover(false)}
@@ -243,7 +244,7 @@ function Band({ x, initials, name, strap }: { x: number; initials: string; name:
               drag(new THREE.Vector3().copy(e.point).sub(tmp.vec.copy(card.current.translation() as THREE.Vector3)));
             }}
           >
-            <Badge initials={initials} name={name} />
+            <Badge name={name} logo={logo} />
           </group>
         </RigidBody>
       </group>
@@ -258,10 +259,13 @@ function Band({ x, initials, name, strap }: { x: number; initials: string; name:
 function Scene({ strap }: { strap: string }) {
   const { viewport } = useThree();
   const spacing = Math.min(3.6, viewport.width / 3.1);
+  const logo = useTexture(logoAsset.url);
+  logo.colorSpace = THREE.SRGBColorSpace;
+  logo.anisotropy = 8;
   return (
     <>
       {PARTNERS.map((p, i) => (
-        <Band key={p.name} x={(i - 1) * spacing} initials={p.initials} name={p.name} strap={strap} />
+        <Band key={p.name} x={(i - 1) * spacing} name={p.name} strap={strap} logo={logo} />
       ))}
     </>
   );
@@ -286,7 +290,9 @@ export default function PartnerLanyards() {
       <ambientLight intensity={Math.PI * 0.8} />
       <directionalLight position={[3, 5, 8]} intensity={1.5} />
       <Physics gravity={[0, -30, 0]} timeStep={1 / 60}>
-        <Scene strap={strap} />
+        <Suspense fallback={null}>
+          <Scene strap={strap} />
+        </Suspense>
       </Physics>
     </Canvas>
   );
