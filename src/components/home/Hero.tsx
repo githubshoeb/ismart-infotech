@@ -13,6 +13,7 @@ import { CircuitBackdrop } from "@/components/CircuitBackdrop";
 import { LightfallBackground } from "@/components/LightfallBackground";
 import { ScrambleText } from "@/components/ScrambleText";
 import { SITE } from "@/lib/site";
+import { HeroSlideshow } from "@/components/home/HeroSlideshow";
 
 const COUNTRIES: { code: string; name: string }[] = [
   { code: "ae", name: "United Arab Emirates" },
@@ -46,7 +47,8 @@ export function Hero() {
       <LightfallBackground />
       <CircuitBackdrop />
 
-      <div className="shell relative">
+      <div className="shell relative grid items-center gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
+      <div>
         <motion.div {...fade(0)} className="mb-5">
           <ScrambleText
             text="iSmart Infotech Solutions"
@@ -116,6 +118,12 @@ export function Hero() {
           </p>
         </motion.div>
       </div>
+
+        <motion.div {...fade(0.3)}>
+          <HeroSlideshow />
+        </motion.div>
+      </div>
+
 
       <motion.div
         {...fade(0.7)}
