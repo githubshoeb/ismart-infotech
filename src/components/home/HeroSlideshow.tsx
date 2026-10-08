@@ -1,13 +1,13 @@
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useEffect, useState, type ReactNode } from "react";
 
-import h5 from "@/assets/hero-5.jpg.asset.json";
-import h6 from "@/assets/hero-6.jpg.asset.json";
-import h7 from "@/assets/hero-7.jpg.asset.json";
-import h8 from "@/assets/hero-8.jpg.asset.json";
-import h9 from "@/assets/hero-9.jpg.asset.json";
+import h5 from "@/assets/hero-5.jpg";
+import h6 from "@/assets/hero-6.jpg";
+import h7 from "@/assets/hero-7.jpg";
+import h8 from "@/assets/hero-8.jpg";
+import h9 from "@/assets/hero-9.jpg";
 
-const SLIDES = [h5.url, h6.url, h7.url, h8.url, h9.url];
+const SLIDES = [h5, h6, h7, h8, h9];
 const THEME_MS = 5500;
 const PHOTO_MS = 4500;
 const FADE = 1.4;

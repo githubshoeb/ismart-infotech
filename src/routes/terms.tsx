@@ -1,10 +1,13 @@
+import { seoLinks, seoMeta } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/terms")({
   head: () => ({
+    links: seoLinks("/terms"),
     meta: [
+      ...seoMeta("/terms"),
       { title: "Terms — iSmart Infotech Solutions" },
       {
         name: "description",

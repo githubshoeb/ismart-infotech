@@ -16,7 +16,7 @@ import * as THREE from "three";
 
 import { cssColor } from "@/lib/css-color";
 import { PARTNERS } from "@/lib/site";
-import logoAsset from "@/assets/ismart-logo-icon.png.asset.json";
+import logoAsset from "@/assets/ismart-logo-icon.png";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 declare module "@react-three/fiber" {
@@ -27,6 +27,8 @@ declare module "@react-three/fiber" {
 }
 
 // Badge-only colors (scoped to this component, per the brand spec for partner badges).
+// Local font so drei <Text> never fetches one from a CDN.
+const BADGE_FONT = "/fonts/poppins-latin-500-normal.woff";
 const BADGE_NAVY = "#0b1a47";
 const BADGE_LIGHT = "#ffffff";
 const BADGE_CYAN = "#02aeea";
@@ -104,15 +106,15 @@ function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
         <planeGeometry args={[0.3, 0.3]} />
         <meshBasicMaterial map={logo} transparent toneMapped={false} />
       </mesh>
-      <Text position={[-HW + 0.5, HH - 0.25, 0.012]} fontSize={0.072} color={BADGE_LIGHT} anchorX="left" anchorY="middle">
+      <Text font={BADGE_FONT} position={[-HW + 0.5, HH - 0.25, 0.012]} fontSize={0.072} color={BADGE_LIGHT} anchorX="left" anchorY="middle">
         iSmart Infotech Solutions
       </Text>
-      <Text position={[-HW + 0.5, HH - 0.37, 0.012]} fontSize={0.06} letterSpacing={0.08} color={BADGE_CYAN} anchorX="left" anchorY="middle">
+      <Text font={BADGE_FONT} position={[-HW + 0.5, HH - 0.37, 0.012]} fontSize={0.06} letterSpacing={0.08} color={BADGE_CYAN} anchorX="left" anchorY="middle">
         CODE · CREATE · CONNECT
       </Text>
 
       {/* Partner name (hero element) */}
-      <Text
+      <Text font={BADGE_FONT}
         position={[0, -0.18, 0.012]}
         fontSize={0.19}
         maxWidth={CW * 2}
@@ -125,14 +127,14 @@ function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
       >
         {label}
       </Text>
-      <Text position={[0, -0.42, 0.012]} fontSize={0.105} color={BADGE_NAVY} anchorX="center" anchorY="middle">
+      <Text font={BADGE_FONT} position={[0, -0.42, 0.012]} fontSize={0.105} color={BADGE_NAVY} anchorX="center" anchorY="middle">
         Private Limited
       </Text>
       <mesh position={[0, -0.56, 0.01]}>
         <planeGeometry args={[0.5, 0.012]} />
         <meshBasicMaterial color={BADGE_CYAN} />
       </mesh>
-      <Text position={[0, -0.7, 0.012]} fontSize={0.075} letterSpacing={0.12} color={BADGE_BLUE} anchorX="center" anchorY="middle">
+      <Text font={BADGE_FONT} position={[0, -0.7, 0.012]} fontSize={0.075} letterSpacing={0.12} color={BADGE_BLUE} anchorX="center" anchorY="middle">
         COLLABORATION PARTNER
       </Text>
 
@@ -140,7 +142,7 @@ function Badge({ name, logo }: { name: string; logo: THREE.Texture }) {
       <mesh geometry={geo.bar} position-z={0.006}>
         <meshBasicMaterial color={BADGE_BLUE} />
       </mesh>
-      <Text position={[0, -HH + 0.13, 0.012]} fontSize={0.06} letterSpacing={0.1} color={BADGE_LIGHT} anchorX="center" anchorY="middle">
+      <Text font={BADGE_FONT} position={[0, -HH + 0.13, 0.012]} fontSize={0.06} letterSpacing={0.1} color={BADGE_LIGHT} anchorX="center" anchorY="middle">
         CODE · CREATE · CONNECT
       </Text>
 
@@ -259,7 +261,7 @@ function Band({ x, name, strap, logo }: { x: number; name: string; strap: string
 function Scene({ strap }: { strap: string }) {
   const { viewport } = useThree();
   const spacing = Math.min(3.6, viewport.width / 3.1);
-  const logo = useTexture(logoAsset.url);
+  const logo = useTexture(logoAsset);
   logo.colorSpace = THREE.SRGBColorSpace;
   logo.anisotropy = 8;
   return (

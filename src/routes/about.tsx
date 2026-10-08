@@ -1,13 +1,16 @@
+import { seoLinks, seoMeta } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
-import wordmark from "@/assets/ismart-logo-wordmark.png.asset.json";
+import wordmark from "@/assets/ismart-logo-wordmark.png";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
+    links: seoLinks("/about"),
     meta: [
+      ...seoMeta("/about"),
       { title: "About — iSmart Infotech Solutions" },
       {
         name: "description",
@@ -92,7 +95,7 @@ function About() {
           </Reveal>
           <Reveal delay={0.24}>
             <img
-              src={wordmark.url}
+              src={wordmark}
               alt={SITE.name}
               loading="lazy"
               width={320}
