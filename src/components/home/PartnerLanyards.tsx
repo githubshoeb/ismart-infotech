@@ -16,7 +16,7 @@ import * as THREE from "three";
 
 import { cssColor } from "@/lib/css-color";
 import { PARTNERS } from "@/lib/site";
-import logoAsset from "@/assets/ismart-logo-icon.png.asset.json";
+import logoAsset from "@/assets/ismart-logo-icon.png";
 
 extend({ MeshLineGeometry, MeshLineMaterial });
 declare module "@react-three/fiber" {

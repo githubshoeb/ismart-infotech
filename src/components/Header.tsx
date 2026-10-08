@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-import iconLogo from "@/assets/ismart-logo-icon.png.asset.json";
+import iconLogo from "@/assets/ismart-logo-icon.png";
 import { SERVICES, SITE } from "@/lib/site";
 import { ThemeToggle } from "./ThemeToggle";
 

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Linkedin, Mail } from "lucide-react";
 
-import fullLogo from "@/assets/ismart-logo-full.png.asset.json";
+import fullLogo from "@/assets/ismart-logo-full.webp";
 import { SERVICES, SITE } from "@/lib/site";
 
 export function Footer() {

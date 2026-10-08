@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
-import wordmark from "@/assets/ismart-logo-wordmark.png.asset.json";
+import wordmark from "@/assets/ismart-logo-wordmark.png";
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
