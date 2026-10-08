@@ -92,7 +92,7 @@ function About() {
           </Reveal>
           <Reveal delay={0.24}>
             <img
-              src={wordmark.url}
+              src={wordmark}
               alt={SITE.name}
               loading="lazy"
               width={320}

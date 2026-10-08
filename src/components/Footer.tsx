@@ -10,7 +10,7 @@ export function Footer() {
       <div className="shell grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1.2fr_1.2fr]">
         <div>
           <img
-            src={fullLogo.url}
+            src={fullLogo}
             alt={SITE.name}
             loading="lazy"
             width={220}

@@ -43,7 +43,7 @@ export function Header() {
         <div className="shell flex h-[4.5rem] items-center justify-between gap-6">
           <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
             <img
-              src={iconLogo.url}
+              src={iconLogo}
               alt=""
               width={36}
               height={36}
