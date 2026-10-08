@@ -29,5 +29,7 @@ export default defineConfig({
     server: { entry: "server" },
     pages: STATIC_PAGES.map((path) => ({ path })),
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
+    // Static app shell written as 404.html: the router renders the styled 404 page for any unknown URL.
+    spa: { enabled: true, prerender: { outputPath: "/404.html" } },
   },
 });
