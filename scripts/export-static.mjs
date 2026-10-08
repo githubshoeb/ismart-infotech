@@ -16,7 +16,12 @@ for (const p of PAGES) {
   const file = p === "/" ? `${OUT}/index.html` : `${OUT}${p}/index.html`;
   if (!existsSync(file)) throw new Error(`Missing prerendered page: ${file}`);
 }
-if (!existsSync(`${OUT}/404.html`)) throw new Error("Missing 404.html");
+// Render the styled 404 page once (build time only) and save it as 404.html.
+const server = await import(new URL("../dist/server/index.mjs", import.meta.url).href);
+const res = await (server.default ?? server).fetch(new Request("http://localhost/404-page-not-found"), {}, { waitUntil() {}, passThroughOnException() {} });
+const notFoundHtml = await res.text();
+if (!notFoundHtml.includes("<html")) throw new Error("Could not render 404.html");
+writeFileSync(`${OUT}/404.html`, notFoundHtml);
 writeFileSync(`${OUT}/sitemap.xml`, `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${PAGES.filter((p) => p !== "/404").map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join("\n")}

@@ -29,8 +29,6 @@ export default defineConfig({
     server: { entry: "server" },
     pages: [
       ...STATIC_PAGES.map((path) => ({ path })),
-      // Any unmatched URL renders the styled 404 page; saved as 404.html for CloudFront errors.
-      { path: "/404-page-not-found", prerender: { enabled: true, outputPath: "/404.html" } },
     ],
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
   },
