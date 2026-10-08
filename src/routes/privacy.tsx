@@ -1,10 +1,13 @@
+import { seoLinks, seoMeta } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({
+    links: seoLinks("/privacy"),
     meta: [
+      ...seoMeta("/privacy"),
       { title: "Privacy Policy — iSmart Infotech Solutions" },
       {
         name: "description",

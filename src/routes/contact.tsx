@@ -1,3 +1,4 @@
+import { seoLinks, seoMeta } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 import { Check, Mail, MapPin } from "lucide-react";
 import { useState, type FormEvent } from "react";
@@ -7,7 +8,9 @@ import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
+    links: seoLinks("/contact"),
     meta: [
+      ...seoMeta("/contact"),
       { title: "Contact — iSmart Infotech Solutions" },
       {
         name: "description",

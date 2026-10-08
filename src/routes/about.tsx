@@ -1,3 +1,4 @@
+import { seoLinks, seoMeta } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
@@ -7,7 +8,9 @@ import { SITE } from "@/lib/site";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
+    links: seoLinks("/about"),
     meta: [
+      ...seoMeta("/about"),
       { title: "About — iSmart Infotech Solutions" },
       {
         name: "description",

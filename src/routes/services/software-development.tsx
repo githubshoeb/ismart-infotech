@@ -1,3 +1,4 @@
+import { seoLinks, seoMeta } from "@/lib/seo";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { ServicePageTemplate } from "@/components/ServicePageTemplate";
@@ -7,7 +8,9 @@ const service = serviceBySlug("software-development");
 
 export const Route = createFileRoute("/services/software-development")({
   head: () => ({
+    links: seoLinks("/services/software-development"),
     meta: [
+      ...seoMeta("/services/software-development"),
       { title: "Software Development — iSmart Infotech Solutions" },
       {
         name: "description",

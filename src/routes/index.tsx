@@ -1,3 +1,4 @@
+import { seoLinks, seoMeta, SITE_URL } from "@/lib/seo";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 
@@ -13,7 +14,8 @@ const ORG_JSONLD = {
   "@type": "Organization",
   name: SITE.name,
   email: SITE.email,
-  url: "https://ismartinfotech.com/",
+  url: `${SITE_URL}/`,
+  logo: `${SITE_URL}/og-image.png`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Shop No. 2, Opp. Yashwant College, Iqbal Nagar",
@@ -26,7 +28,9 @@ const ORG_JSONLD = {
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: seoLinks("/"),
     meta: [
+      ...seoMeta("/"),
       { title: "iSmart Infotech Solutions — Your Trusted Partner for Digital Growth" },
       {
         name: "description",
