@@ -11,3 +11,4 @@
 - [x] Privacy, Terms, 404
 - [x] Global: custom cursor, scroll reveals, dark mode toggle, reduced motion
 - [x] SEO: per-page head, JSON-LD, robots.txt, sitemap.xml
+- [ ] Static export for S3/CloudFront: prerender every page, self-host images/fonts, VITE_SITE_URL SEO, sitemap at build, 404.html, deploy guide + script
