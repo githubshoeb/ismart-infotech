@@ -27,9 +27,11 @@ export default defineConfig({
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
-    pages: STATIC_PAGES.map((path) => ({ path })),
+    pages: [
+      ...STATIC_PAGES.map((path) => ({ path })),
+      // Any unmatched URL renders the styled 404 page; saved as 404.html for CloudFront errors.
+      { path: "/404-page-not-found", prerender: { enabled: true, outputPath: "/404.html" } },
+    ],
     prerender: { enabled: true, autoStaticPathsDiscovery: false },
-    // Static app shell written as 404.html: the router renders the styled 404 page for any unknown URL.
-    spa: { enabled: true, prerender: { outputPath: "/404.html" } },
   },
 });
