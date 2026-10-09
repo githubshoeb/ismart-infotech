@@ -9,16 +9,16 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 // Every real page, prerendered to its own HTML file at build time (static S3 export).
 export const STATIC_PAGES = [
   "/",
-  "/about",
-  "/services/cloud-infrastructure",
-  "/services/software-development",
-  "/services/digital-marketing",
-  "/services/it-consulting-staffing",
-  "/services/data-ai",
-  "/services/security",
-  "/contact",
-  "/privacy",
-  "/terms",
+  "/about/",
+  "/services/cloud-infrastructure/",
+  "/services/software-development/",
+  "/services/digital-marketing/",
+  "/services/it-consulting-staffing/",
+  "/services/data-ai/",
+  "/services/security/",
+  "/contact/",
+  "/privacy/",
+  "/terms/",
 ];
 
 export default defineConfig({

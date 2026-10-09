@@ -86,6 +86,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "IT services for startups, SMEs and enterprises: cloud, custom software, digital marketing, consulting, staffing, data & AI, and security.",
       },
       { name: "author", content: "iSmart Infotech Solutions" },
+      { name: "referrer", content: "strict-origin-when-cross-origin" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
