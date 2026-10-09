@@ -11,7 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "build:static": "vite build && node scripts/export-static.mjs",
-    "preview:static": "npx --yes serve static-site -l 4173"
+    "preview:static": "npx --yes serve dist-static -l 4173"
   },
   "overrides": {
     "rolldown": "1.2.1"
