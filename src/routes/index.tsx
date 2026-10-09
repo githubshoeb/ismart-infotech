@@ -7,6 +7,7 @@ import { RotatingSpecialties } from "@/components/home/RotatingSpecialties";
 import { Partners } from "@/components/home/Partners";
 import { LanyardBadge } from "@/components/LanyardBadge";
 import { Reveal } from "@/components/Reveal";
+import { QuickStart } from "@/components/home/QuickStart";
 import { SERVICES, SITE } from "@/lib/site";
 
 const ORG_JSONLD = {
@@ -233,16 +234,16 @@ function Index() {
           </Reveal>
           <Reveal delay={0.14}>
             <div>
+              <QuickStart />
+              <p className="mt-4 text-sm text-muted-foreground">
+                Working across India &amp; internationally.
+              </p>
               <Link
                 to="/contact"
-                className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                className="link-underline mt-6 inline-flex items-center gap-2 text-sm text-primary"
               >
                 Get in touch <ArrowRight className="h-4 w-4" />
               </Link>
-              <p className="mt-6 text-sm text-muted-foreground">
-                {/* PLACEHOLDER — confirm the real reply window */}
-                Working across India &amp; internationally · Replies within {SITE.replyDays}
-              </p>
             </div>
           </Reveal>
         </div>

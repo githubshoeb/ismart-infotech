@@ -30,7 +30,7 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
 });
 
-export const QUICKSTART_KEY = "ismart-quickstart-email";
+import { QUICKSTART_KEY } from "@/components/home/QuickStart";
 
 const COUNTRIES = [
   "India",
