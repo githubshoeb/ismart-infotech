@@ -1,9 +1,0 @@
-{
-  "name": "iSmart Infotech Solutions",
-  "short_name": "iSmart",
-  "icons": [{ "src": "/favicon.png", "sizes": "512x512", "type": "image/png" }],
-  "start_url": "/",
-  "display": "browser",
-  "background_color": "#eef1f6",
-  "theme_color": "#0b1a47"
-}

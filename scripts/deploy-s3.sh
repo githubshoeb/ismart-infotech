@@ -58,7 +58,6 @@ aws s3 cp "$TMP/robots.txt" "$S3/robots.txt" --content-type "text/plain; charset
 aws s3 cp "$TMP/sitemap.xml" "$S3/sitemap.xml" --content-type "application/xml; charset=utf-8" --cache-control "$DAY"
 
 # Remove files that no longer exist locally (sync --delete; uploads above already set metadata).
-aws s3 sync "$TMP" "$S3" --delete --size-only --exclude "*" >/dev/null
 aws s3 sync "$TMP" "$S3" --delete --dryrun | grep '^(dryrun) delete' | awk '{print $3}' | while read -r key; do
   aws s3 rm "$key"
 done
