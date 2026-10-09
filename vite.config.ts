@@ -10,15 +10,15 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export const STATIC_PAGES = [
   "/",
   "/about",
-  "/services/cloud-infrastructure",
-  "/services/software-development",
-  "/services/digital-marketing",
-  "/services/it-consulting-staffing",
-  "/services/data-ai",
-  "/services/security",
-  "/contact",
-  "/privacy",
-  "/terms",
+  "/services/cloud-infrastructure/",
+  "/services/software-development/",
+  "/services/digital-marketing/",
+  "/services/it-consulting-staffing/",
+  "/services/data-ai/",
+  "/services/security/",
+  "/contact/",
+  "/privacy/",
+  "/terms/",
 ];
 
 export default defineConfig({
