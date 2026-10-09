@@ -46,7 +46,7 @@ for (const file of htmlFiles) {
   }
   const csp = [
     "default-src 'self'",
-    `script-src 'self' 'wasm-unsafe-eval' ${[...hashes].join(" ")}`.trim(),
+    `script-src 'self' 'wasm-unsafe-eval' blob: ${[...hashes].join(" ")}`.trim(),
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:",
     "media-src 'self'",
