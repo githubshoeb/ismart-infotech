@@ -68,7 +68,7 @@ function Field({
   shakeKey,
   children,
 }: {
-  error?: string;
+  error?: string | undefined;
   shakeKey: number;
   children: ReactNode;
 }) {
@@ -88,7 +88,7 @@ function Field({
   );
 }
 
-function buildMail(v: Record<string, string>, chips: string[]) {
+function buildMail(v: { name: string; email: string; company: string; country: string; message: string }, chips: string[]) {
   const subject = `New enquiry from ${v.name}${v.company ? ` (${v.company})` : ""}`;
   const body = [
     `Name: ${v.name}`,
@@ -185,7 +185,7 @@ function Contact() {
               <motion.span
                 aria-hidden
                 className="absolute -top-6 right-0 rounded-2xl rounded-bl-sm border border-border bg-card px-3 py-1.5 text-sm font-medium text-primary shadow-sm"
-                animate={reduce ? undefined : { y: [0, -6, 0] }}
+                animate={reduce ? { y: 0 } : { y: [0, -6, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
               >
                 hi!
@@ -377,7 +377,7 @@ function Contact() {
                           <motion.button
                             key={c}
                             type="button"
-                            whileTap={reduce ? undefined : { scale: 0.94 }}
+                            whileTap={reduce ? { scale: 1 } : { scale: 0.94 }}
                             onClick={() => toggleChip(c)}
                             aria-pressed={on}
                             className={`rounded-full border px-4 py-2 text-xs transition-colors ${
