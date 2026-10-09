@@ -1,0 +1,1 @@
+import{o as e}from"./site-C9XOyXY2.js";import{r as t}from"./index-BIuMFvYo.js";import{t as n}from"./ServicePageTemplate-DmjOUsWf.js";var r=e(),i=()=>(0,r.jsx)(n,{service:t});export{i as component};
