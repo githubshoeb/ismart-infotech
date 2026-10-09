@@ -42,7 +42,7 @@ for (const file of htmlFiles) {
   let html = readFileSync(file, "utf8");
   const hashes = new Set();
   for (const m of html.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g)) {
-    if (m[1]) hashes.add(`'sha256-${createHash("sha256").update(m[1], "utf8").digest("base64")}'`);
+    if (m[1]) hashes.add(`'sha256-${createHash("sha256").update(m[1].replace(/\r\n?/g, "\n").replace(/\0/g, "\uFFFD"), "utf8").digest("base64")}'`);
   }
   const csp = [
     "default-src 'self'",
